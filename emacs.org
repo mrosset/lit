@@ -15,7 +15,7 @@
 
    #+RESULTS:
 
-** Install emacs dependancies 
+** Install Emacs dependancies 
    #+BEGIN_SRC sh :results value verbatim
    sudo yum install -d 1 -y ncurses-devel libX11-devel gtk3-devel libXpm-devel libjpeg-turbo-devel giflib-devel libtiff-devel
    #+END_SRC
