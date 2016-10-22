@@ -1,0 +1,83 @@
+
+#+STARTUP: showall
+* Building 
+** Download source
+   #+BEGIN_SRC sh
+   mkdir -p "$HOME/src"
+   cd "$HOME/src"
+   curl http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.xz | tar xJ
+   find "$HOME/src"
+   #+END_SRC
+** Install development group
+   #+BEGIN_SRC sh
+   sudo yum -d 1 -y groupinstall "Development Tools"
+   #+END_SRC
+
+   #+RESULTS:
+
+** Install emacs dependancies 
+   #+BEGIN_SRC sh :results value verbatim
+   sudo yum install -d 1 -y ncurses-devel libX11-devel gtk3-devel libXpm-devel libjpeg-turbo-devel giflib-devel libtiff-devel
+   #+END_SRC
+
+** Configure
+   #+BEGIN_SRC sh :results value verbatim
+   mkdir -p "$HOME/src/emacs-25.1_build"
+   cd "$HOME/src/emacs-25.1_build"
+   ../emacs-25.1/configure  --with-x-toolkit=gtk3 -q
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+
+   Configured for 'x86_64-unknown-linux-gnu'.
+
+     Where should the build process find the source code?    ../emacs-25.1
+     What compiler should emacs be built with?               gcc -std=gnu99 -O2 -pipe
+     Should Emacs use the GNU version of malloc?             yes
+	 (Using Doug Lea's new malloc from the GNU C Library.)
+     Should Emacs use a relocating allocator for buffers?    no
+     Should Emacs use mmap(2) for buffer allocation?         no
+     What window system should Emacs use?                    x11
+     What toolkit should Emacs use?                          GTK3
+     Where do we find X Windows header files?                Standard dirs
+     Where do we find X Windows libraries?                   Standard dirs
+     Does Emacs use -lXaw3d?                                 no
+     Does Emacs use -lXpm?                                   yes
+     Does Emacs use -ljpeg?                                  yes
+     Does Emacs use -ltiff?                                  yes
+     Does Emacs use a gif library?                           yes -lgif
+     Does Emacs use a png library?                           yes -lpng15
+     Does Emacs use -lrsvg-2?                                no
+     Does Emacs use cairo?                                   no
+     Does Emacs use imagemagick?                             no
+     Does Emacs support sound?                               yes
+     Does Emacs use -lgpm?                                   no
+     Does Emacs use -ldbus?                                  no
+     Does Emacs use -lgconf?                                 no
+     Does Emacs use GSettings?                               yes
+     Does Emacs use a file notification library?             yes -lglibc (inotify)
+     Does Emacs use access control lists?                    no
+     Does Emacs use -lselinux?                               no
+     Does Emacs use -lgnutls?                                no
+     Does Emacs use -lxml2?                                  no
+     Does Emacs use -lfreetype?                              yes
+     Does Emacs use -lm17n-flt?                              no
+     Does Emacs use -lotf?                                   no
+     Does Emacs use -lxft?                                   yes
+     Does Emacs directly use zlib?                           yes
+     Does Emacs have dynamic modules support?                no
+     Does Emacs use toolkit scroll bars?                     yes
+     Does Emacs support Xwidgets (requires gtk3)?            no
+
+
+#+end_example
+
+** Build
+   #+BEGIN_SRC sh
+   cd "$HOME/src/emacs-25.1_build"
+   make -j4 -sw &> /dev/null
+   sudo make install 
+   #+END_SRC
+
+   #+RESULTS:
