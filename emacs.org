@@ -27,7 +27,6 @@
    ../emacs-25.1/configure  --with-x-toolkit=gtk3 -q
    #+END_SRC
 
-   #+RESULTS:
    #+begin_example
 
    Configured for 'x86_64-unknown-linux-gnu'.
