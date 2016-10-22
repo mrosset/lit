@@ -1,6 +1,6 @@
 
 #+STARTUP: showall
-* Building 
+* Building Emacs 25.1 on Centos 7.1.1503
 ** Download source
    #+BEGIN_SRC sh
    mkdir -p "$HOME/src"
