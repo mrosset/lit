@@ -6,8 +6,8 @@
    mkdir -p "$HOME/src"
    cd "$HOME/src"
    curl http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.xz | tar xJ
-   find "$HOME/src"
    #+END_SRC
+
 ** Install development group
    #+BEGIN_SRC sh
    sudo yum -d 1 -y groupinstall "Development Tools"
